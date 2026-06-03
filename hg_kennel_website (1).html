@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HG Kennel – Handgemaakte Benches & Couveuses</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brown-dark: #3B2A1A;
+    --brown-mid: #6B4C2A;
+    --brown-light: #C4956A;
+    --cream: #F5F0E8;
+    --warm-white: #FDFAF5;
+    --accent: #8B5E3C;
+    --green: #4A6741;
+    --text: #2C1E0F;
+    --text-muted: #7A6050;
+    --border: rgba(107,76,42,0.2);
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253,250,245,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--brown-dark); letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--brown-light); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--brown-mid); }
+  .nav-cta {
+    background: var(--brown-mid); color: #fff !important;
+    padding: 0.45rem 1.2rem; border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--brown-dark) !important; }
+
+  /* ── PAGES ── */
+  .page { display: none; padding-top: 68px; }
+  .page.active { display: block; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: grid; place-items: center;
+    background: linear-gradient(160deg, var(--brown-dark) 0%, var(--brown-mid) 60%, var(--brown-light) 100%);
+    position: relative; overflow: hidden; text-align: center;
+    padding: 4rem 2rem;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 720px; }
+  .hero-badge {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.4rem 1.2rem; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.25); margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: #fff; line-height: 1.15; margin-bottom: 1.25rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--brown-light); }
+  .hero p {
+    font-size: 1.125rem; color: rgba(255,255,255,0.82);
+    max-width: 520px; margin: 0 auto 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 0.85rem 2rem;
+    font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; cursor: pointer; border: none;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .btn:hover { transform: translateY(-2px); opacity: 0.92; }
+  .btn-primary { background: #fff; color: var(--brown-dark); }
+  .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+
+  /* ── USP STRIP ── */
+  .usp-strip {
+    background: var(--cream); border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+  }
+  .usp-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1.25rem 2.5rem; border-right: 1px solid var(--border);
+    font-size: 0.875rem; font-weight: 700; color: var(--brown-mid);
+    letter-spacing: 0.04em;
+  }
+  .usp-item:last-child { border-right: none; }
+  .usp-icon {
+    width: 36px; height: 36px; background: var(--brown-mid);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .usp-icon svg { width: 18px; height: 18px; fill: #fff; }
+
+  /* ── SECTION ── */
+  .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    display: inline-block; color: var(--brown-light);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    color: var(--brown-dark); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--text-muted);
+    max-width: 600px; margin-bottom: 3rem;
+  }
+
+  /* ── PRODUCT CARDS ── */
+  .product-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem; margin-bottom: 4rem;
+  }
+  .product-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(59,42,26,0.12); }
+  .card-img {
+    height: 220px; background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .card-img svg { width: 120px; height: 120px; opacity: 0.25; }
+  .card-img-label {
+    position: absolute; bottom: 12px; left: 12px;
+    background: var(--brown-mid); color: #fff;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 100px;
+  }
+  .card-body { padding: 1.5rem; }
+  .card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--brown-dark); margin-bottom: 0.5rem;
+  }
+  .card-body p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .card-link {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--brown-mid); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .card-link svg { width: 14px; height: 14px; }
+
+  /* ── PHOTO GALLERY ── */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; margin-bottom: 3rem;
+  }
+  .gallery-item {
+    border-radius: 10px; overflow: hidden;
+    background: var(--cream); aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); position: relative;
+  }
+  .gallery-item svg { width: 64px; height: 64px; opacity: 0.2; }
+  .gallery-item .photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .gallery-item .photo-placeholder span {
+    font-size: 0.7rem; color: var(--text-muted);
+    font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .gallery-big { grid-column: span 2; aspect-ratio: 16/9; }
+
+  /* ── SPECS TABLE ── */
+  .specs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;
+  }
+  .spec-card {
+    background: var(--cream); border-radius: 12px;
+    padding: 2rem; border: 1px solid var(--border);
+  }
+  .spec-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--brown-dark); font-size: 1.2rem; margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+  }
+  .spec-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 0.6rem 0; border-bottom: 1px solid rgba(107,76,42,0.1);
+    font-size: 0.9rem;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-key { color: var(--text-muted); }
+  .spec-val { color: var(--brown-dark); font-weight: 700; text-align: right; max-width: 55%; }
+
+  /* ── CONTACT FORM ── */
+  .form-wrap {
+    background: var(--cream); border-radius: 16px;
+    border: 1px solid var(--border); padding: 3rem;
+    max-width: 680px;
+  }
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem; color: var(--brown-dark); margin-bottom: 0.5rem;
+  }
+  .form-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: span 2; }
+  .form-group label {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.75rem 1rem;
+    font-family: 'Lato', sans-serif; font-size: 0.95rem; color: var(--text);
+    outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--brown-light);
+  }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .form-submit {
+    margin-top: 1.5rem;
+    background: var(--brown-mid); color: #fff;
+    padding: 0.9rem 2.5rem; border: none; border-radius: 6px;
+    font-family: 'Lato', sans-serif; font-size: 0.875rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--brown-dark); }
+  .form-success {
+    display: none; background: #EAF3E0; border: 1px solid #7BAD5B;
+    color: #2E5B1A; border-radius: 8px; padding: 1rem 1.5rem;
+    margin-top: 1rem; font-size: 0.9rem;
+  }
+  .form-success.show { display: block; }
+
+  /* ── PAGE-SPECIFIC HERO ── */
+  .sub-hero {
+    background: var(--brown-dark); padding: 5rem 2rem 4rem;
+    text-align: center;
+  }
+  .sub-hero .hero-badge { margin-bottom: 1rem; }
+  .sub-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); color: #fff;
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .sub-hero h1 em { font-style: italic; color: var(--brown-light); }
+  .sub-hero p { color: rgba(255,255,255,0.75); max-width: 540px; margin: 0 auto; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--brown-dark); color: #fff;
+    border-radius: 16px; padding: 3rem; display: flex;
+    align-items: center; gap: 2.5rem; margin-bottom: 4rem;
+    flex-wrap: wrap;
+  }
+  .highlight-box .hl-icon {
+    width: 72px; height: 72px; background: var(--brown-mid);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .highlight-box .hl-icon svg { width: 36px; height: 36px; fill: #fff; }
+  .highlight-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; margin-bottom: 0.5rem;
+  }
+  .highlight-box p { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+
+  /* ── FEATURES LIST ── */
+  .features-list { list-style: none; display: grid; gap: 1rem; margin-bottom: 3rem; }
+  .feature-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.25rem 1.5rem; background: var(--cream);
+    border-radius: 10px; border: 1px solid var(--border);
+  }
+  .feature-dot {
+    width: 10px; height: 10px; background: var(--brown-light);
+    border-radius: 50%; margin-top: 7px; flex-shrink: 0;
+  }
+  .feature-item strong { display: block; color: var(--brown-dark); margin-bottom: 0.25rem; }
+  .feature-item p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown-dark); color: rgba(255,255,255,0.7);
+    text-align: center; padding: 2.5rem; font-size: 0.85rem;
+    margin-top: 0;
+  }
+  footer strong { color: #fff; }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+    .usp-item { padding: 1rem 1.25rem; font-size: 0.8rem; }
+    .specs-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .gallery-big { grid-column: span 2; }
+    .form-wrap { padding: 1.75rem; }
+    .highlight-box { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">HG <span>Kennel</span></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('benches')" id="nav-benches">Benches</a></li>
+    <li><a href="#" onclick="showPage('couveuses')" id="nav-couveuses">Couveuses</a></li>
+    <li><a href="#" onclick="showPage('contact')" class="nav-cta" id="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════ HOME PAGE ═══════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-badge">Handgemaakt in België</span>
+      <h1>Vakmanschap voor jouw <em>trouwste vriend</em></h1>
+      <p>Maatwerk benches & warmtecouveuses — met liefde gemaakt voor honden, kittens, vogels en meer.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="showPage('benches')">Benches bekijken</button>
+        <button class="btn btn-outline" onclick="showPage('couveuses')">Couveuses bekijken</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="usp-strip">
+    <div class="usp-item">
+      <div class="usp-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      </div>
+      100% handgemaakt
+    </div>
+    <div class="usp-item">
+      <div class="usp-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+      </div>
+      Op maat gemaakt
+    </div>
+    <div class="usp-item">
+      <div class="usp-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+      </div>
+      Voor hond, kat & vogel
+    </div>
+    <div class="usp-item">
+      <div class="usp-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V9h16v8c0 .55-.45 1-1 1zm-9-8H7v2h3v-2zm2-1h-1v5h1v-5zm3 0h-2v5h2v-5z"/></svg>
+      </div>
+      Veilig & duurzaam
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-label">Ons aanbod</span>
+    <h2 class="section-title">Wat maakt HG Kennel<br>zo bijzonder?</h2>
+    <p class="section-sub">Elk product wordt met zorg en aandacht gemaakt — speciaal voor uw dier, uw woning en uw wensen.</p>
+
+    <div class="product-grid">
+      <div class="product-card" onclick="showPage('benches')">
+        <div class="card-img">
+          <svg viewBox="0 0 24 24" fill="var(--brown-mid)"><path d="M20 9V7c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c-1.1 0-2 .9-2 2v5h1.33L3 18h1l1.33-2h9.33L16 18h1l1.33-2H20v-5c0-1.1-.9-2-2-2z"/></svg>
+          <span class="card-img-label">Maatwerk</span>
+        </div>
+        <div class="card-body">
+          <h3>Honden Benches</h3>
+          <p>Stevige, stijlvolle benches voor thuis én in de auto. Elk formaat, elke maat — speciaal voor jouw hond.</p>
+          <a href="#" onclick="showPage('benches')" class="card-link">
+            Meer info
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="showPage('couveuses')">
+        <div class="card-img" style="background: #FFF4E8;">
+          <svg viewBox="0 0 24 24" fill="var(--brown-light)"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3z"/></svg>
+          <span class="card-img-label">Warmte & zorg</span>
+        </div>
+        <div class="card-body">
+          <h3>Warmtecouveuses</h3>
+          <p>Zorgzame couveuses voor pasgeboren kittens, vogels en andere kleine dieren — veilig en warm.</p>
+          <a href="#" onclick="showPage('couveuses')" class="card-link">
+            Meer info
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="showPage('contact')">
+        <div class="card-img" style="background: #EAF3E0;">
+          <svg viewBox="0 0 24 24" fill="var(--green)"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span class="card-img-label" style="background:var(--green)">Vrijblijvend</span>
+        </div>
+        <div class="card-body">
+          <h3>Aanvraag & Contact</h3>
+          <p>Vragen of wil je iets aanvragen? Vul ons formulier in en we nemen snel contact met je op.</p>
+          <a href="#" onclick="showPage('contact')" class="card-link">
+            Formulier invullen
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>HG Kennel</strong> — Handgemaakte benches & couveuses · België<br>
+    Alle producten worden op bestelling gemaakt.</p>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════ BENCHES PAGE ═══════════════════════════════════ -->
+<div id="page-benches" class="page">
+
+  <div class="sub-hero">
+    <span class="hero-badge">Handgemaakte honden benches</span>
+    <h1>Benches op <em>maat</em></h1>
+    <p>Voor thuis of in de auto — solide constructie, comfortabel voor uw hond, mooi in uw interieur.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="highlight-box">
+      <div class="hl-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 9V7c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c-1.1 0-2 .9-2 2v5h1.33L3 18h1l1.33-2h9.33L16 18h1l1.33-2H20v-5c0-1.1-.9-2-2-2z"/></svg>
+      </div>
+      <div>
+        <h2>Elke bench is uniek</h2>
+        <p>We maken benches voor alle rassen en maten. Of u nu een Chihuahua of een Labrador heeft, wij passen de bench aan naar uw wensen en de afmetingen van uw dier.</p>
+      </div>
+    </div>
+
+    <span class="section-label">Voorbeeldfoto's</span>
+    <h2 class="section-title">Eerder gemaakt werk</h2>
+    <p class="section-sub">Hieronder vindt u enkele voorbeelden van onze benches. Heeft u een specifieke wens? Contacteer ons!</p>
+
+    <div class="gallery">
+      <div class="gallery-item gallery-big">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="var(--brown-light)"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Bench voor thuis – groot formaat</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="var(--brown-light)"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Auto bench</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="var(--brown-light)"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Kleine bench</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="var(--brown-light)"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Maatwerk detail</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="var(--brown-light)"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Bench voor auto</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin-bottom: 3rem;">
+
+    <span class="section-label">Kenmerken & uitvoeringen</span>
+    <h2 class="section-title" style="margin-bottom: 2rem;">Wat kunt u verwachten?</h2>
+
+    <ul class="features-list" style="grid-template-columns: repeat(auto-fit, minmax(280px,1fr));">
+      <li class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>Maatwerk op maat van uw hond</strong>
+          <p>We meten de bench af op basis van het ras en de grootte van uw hond, zodat hij altijd comfortabel kan liggen en staan.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>Voor thuis én de auto</strong>
+          <p>Onze benches zijn beschikbaar in een versie voor in huis én speciaal versterkte autovarianten die veilig meereizen.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>Stevige constructie</strong>
+          <p>Gemaakt van kwaliteitsmateriaal voor jarenlang gebruik. Veilig, robuust en makkelijk schoon te houden.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>Kleur & afwerking naar keuze</strong>
+          <p>Kies uw gewenste kleur en afwerking zodat de bench mooi past bij uw interieur of wagen.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="specs-grid">
+      <div class="spec-card">
+        <h3>Bench voor thuis</h3>
+        <div class="spec-row"><span class="spec-key">Materiaal</span><span class="spec-val">Hout / metaal combinatie</span></div>
+        <div class="spec-row"><span class="spec-key">Maten</span><span class="spec-val">XS t/m XXL – op aanvraag</span></div>
+        <div class="spec-row"><span class="spec-val">Kleur</span><span class="spec-val">Naar keuze</span></div>
+        <div class="spec-row"><span class="spec-key">Deur</span><span class="spec-val">Inschuifbaar of op slot</span></div>
+        <div class="spec-row"><span class="spec-key">Levering</span><span class="spec-val">Op afspraak (afhaling)</span></div>
+      </div>
+      <div class="spec-card">
+        <h3>Auto bench</h3>
+        <div class="spec-row"><span class="spec-key">Materiaal</span><span class="spec-val">Versterkt metaal / staal</span></div>
+        <div class="spec-row"><span class="spec-key">Bevestiging</span><span class="spec-val">Aanpasbaar aan voertuig</span></div>
+        <div class="spec-row"><span class="spec-key">Ventilatie</span><span class="spec-val">Rasterwerk rondom</span></div>
+        <div class="spec-row"><span class="spec-key">Veiligheid</span><span class="spec-val">Vergrendelbaar</span></div>
+        <div class="spec-row"><span class="spec-key">Levering</span><span class="spec-val">Op afspraak (afhaling)</span></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding: 2rem 0;">
+      <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Interesse of vragen over een bench op maat?</p>
+      <button class="btn" style="background:var(--brown-mid);color:#fff;" onclick="showPage('contact')">Aanvraag indienen</button>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>HG Kennel</strong> — Handgemaakte benches & couveuses · België</p>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════ COUVEUSES PAGE ═══════════════════════════════════ -->
+<div id="page-couveuses" class="page">
+
+  <div class="sub-hero" style="background: linear-gradient(160deg, #3B2000 0%, #7A4A10 100%);">
+    <span class="hero-badge">Warmte & zorg</span>
+    <h1>Warmtecouveuses voor <em>kleine dieren</em></h1>
+    <p>Voor pasgeboren kittens, vogels, konijnen en andere dieren die extra warmte en bescherming nodig hebben.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="highlight-box" style="background: linear-gradient(135deg, #5C3510 0%, #3B2000 100%);">
+      <div class="hl-icon" style="background: var(--brown-light);">
+        <svg viewBox="0 0 24 24"><path d="M12 3C7 8 4 13 4 16c0 4.4 3.6 8 8 8s8-3.6 8-8c0-3-3-8-8-13z"/></svg>
+      </div>
+      <div>
+        <h2>Warmte die het verschil maakt</h2>
+        <p>Pasgeboren dieren zijn kwetsbaar. Onze couveuses zorgen voor een stabiele, veilige omgeving met de juiste temperatuur — cruciaal voor een goede start in het leven.</p>
+      </div>
+    </div>
+
+    <span class="section-label">Voorbeeldfoto's</span>
+    <h2 class="section-title">Voorbeelden couveuses</h2>
+    <p class="section-sub">Bekijk hieronder enkele modellen. Elke couveuse wordt op maat en naar behoefte gemaakt.</p>
+
+    <div class="gallery">
+      <div class="gallery-item gallery-big">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="#C4956A"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Couveuse voor kittens – model groot</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="#C4956A"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Vogels couveuse</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="#C4956A"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Klein model</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="#C4956A"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Binnenuitvoering detail</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="#C4956A"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          <span>Couveuse met verwarming</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin-bottom: 3rem;">
+
+    <span class="section-label">Kenmerken</span>
+    <h2 class="section-title" style="margin-bottom: 2rem;">Wat maakt onze couveuses bijzonder?</h2>
+
+    <ul class="features-list" style="grid-template-columns: repeat(auto-fit, minmax(280px,1fr));">
+      <li class="feature-item">
+        <div class="feature-dot" style="background: var(--brown-light);"></div>
+        <div>
+          <strong>Instelbare temperatuur</strong>
+          <p>De warmte kan nauwkeurig worden ingesteld op de noden van het dier — van kittens tot exotische vogels.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="feature-dot" style="background: var(--brown-light);"></div>
+        <div>
+          <strong>Veilig voor pasgeborenen</strong>
+          <p>Geen scherpe hoeken, geen gevaarlijke warmtebronnen — alles is ontworpen met de veiligheid van kleine dieren in gedachten.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="feature-dot" style="background: var(--brown-light);"></div>
+        <div>
+          <strong>Geschikt voor meerdere diersoorten</strong>
+          <p>Kittens, vogels, konijntjes, hamsters... Wij passen de couveuse aan op het type en de grootte van het dier.</p>
+        </div>
+      </li>
+      <li class="feature-item">
+        <div class="feature-dot" style="background: var(--brown-light);"></div>
+        <div>
+          <strong>Makkelijk te reinigen</strong>
+          <p>Uitneembare bodem en glad oppervlak voor eenvoudige reiniging en hygiëne.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="specs-grid">
+      <div class="spec-card">
+        <h3>Couveuse – standaard</h3>
+        <div class="spec-row"><span class="spec-key">Geschikt voor</span><span class="spec-val">Kittens, vogels, kleine dieren</span></div>
+        <div class="spec-row"><span class="spec-key">Verwarming</span><span class="spec-val">Instelbaar verwarmingselement</span></div>
+        <div class="spec-row"><span class="spec-key">Ventilatie</span><span class="spec-val">Gecontroleerde luchtcirculatie</span></div>
+        <div class="spec-row"><span class="spec-key">Materiaal</span><span class="spec-val">Voedselveilig / huisdier-veilig</span></div>
+        <div class="spec-row"><span class="spec-key">Levering</span><span class="spec-val">Op afspraak (afhaling)</span></div>
+      </div>
+      <div class="spec-card">
+        <h3>Couveuse – op maat</h3>
+        <div class="spec-row"><span class="spec-key">Afmeting</span><span class="spec-val">Volledig aanpasbaar</span></div>
+        <div class="spec-row"><span class="spec-key">Meerdere vakken</span><span class="spec-val">Mogelijk op aanvraag</span></div>
+        <div class="spec-row"><span class="spec-key">Thermostaat</span><span class="spec-val">Digitaal regelbaar</span></div>
+        <div class="spec-row"><span class="spec-key">Toepassing</span><span class="spec-val">Fokkers, dierenasielen, thuis</span></div>
+        <div class="spec-row"><span class="spec-key">Levering</span><span class="spec-val">Op afspraak (afhaling)</span></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding: 2rem 0;">
+      <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Interesse in een couveuse op maat?</p>
+      <button class="btn" style="background:var(--brown-mid);color:#fff;" onclick="showPage('contact')">Aanvraag indienen</button>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>HG Kennel</strong> — Handgemaakte benches & couveuses · België</p>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════ CONTACT PAGE ═══════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <div class="sub-hero" style="background: linear-gradient(160deg, #2A3B1A 0%, #4A6741 100%);">
+    <span class="hero-badge">Neem contact op</span>
+    <h1>Vraag of <em>aanvraag?</em></h1>
+    <p>Vul het formulier in en we contacteren u zo snel mogelijk.</p>
+  </div>
+
+  <div class="section" style="max-width: 780px;">
+
+    <div class="form-wrap">
+      <h2 class="form-title">Contactformulier</h2>
+      <p class="form-sub">Heeft u een vraag of wilt u een bench of couveuse aanvragen? Laat het ons weten!</p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fname">Voornaam</label>
+          <input type="text" id="fname" placeholder="Jan">
+        </div>
+        <div class="form-group">
+          <label for="lname">Achternaam</label>
+          <input type="text" id="lname" placeholder="Janssen">
+        </div>
+        <div class="form-group">
+          <label for="email">E-mailadres</label>
+          <input type="email" id="email" placeholder="jan@voorbeeld.be">
+        </div>
+        <div class="form-group">
+          <label for="tel">Telefoonnummer</label>
+          <input type="tel" id="tel" placeholder="+32 4...">
+        </div>
+        <div class="form-group full">
+          <label for="subject">Onderwerp</label>
+          <select id="subject">
+            <option value="">— Kies een onderwerp —</option>
+            <option>Bench voor thuis</option>
+            <option>Bench voor de auto</option>
+            <option>Warmtecouveuse</option>
+            <option>Algemene vraag</option>
+            <option>Andere</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="dier">Diersoort & ras (indien van toepassing)</label>
+          <input type="text" id="dier" placeholder="bijv. Golden Retriever, 3 kittens, parkiet...">
+        </div>
+        <div class="form-group full">
+          <label for="bericht">Uw bericht / extra info</label>
+          <textarea id="bericht" placeholder="Beschrijf hier uw wensen, afmetingen, kleurvoorkeur, enz."></textarea>
+        </div>
+      </div>
+
+      <button class="form-submit" onclick="submitForm()">Verstuur aanvraag</button>
+      <div class="form-success" id="form-success">
+        Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem; display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem;">
+      <div class="spec-card" style="text-align:center;">
+        <div style="font-size:1.5rem; margin-bottom:0.5rem;">📍</div>
+        <strong style="color:var(--brown-dark);">Locatie</strong>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.25rem;">België<br>Afhaling op afspraak</p>
+      </div>
+      <div class="spec-card" style="text-align:center;">
+        <div style="font-size:1.5rem; margin-bottom:0.5rem;">🕐</div>
+        <strong style="color:var(--brown-dark);">Reactietijd</strong>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.25rem;">We antwoorden<br>binnen 1–2 werkdagen</p>
+      </div>
+      <div class="spec-card" style="text-align:center;">
+        <div style="font-size:1.5rem; margin-bottom:0.5rem;">🐾</div>
+        <strong style="color:var(--brown-dark);">Maatwerk</strong>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.25rem;">Elk product<br>volledig op maat</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p><strong>HG Kennel</strong> — Handgemaakte benches & couveuses · België</p>
+  </footer>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function submitForm() {
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!fname || !email) {
+    alert('Gelieve minstens uw naam en e-mailadres in te vullen.');
+    return;
+  }
+  document.getElementById('form-success').classList.add('show');
+  document.querySelector('.form-submit').style.display = 'none';
+}
+
+document.querySelectorAll('a[href="#"]').forEach(a => {
+  a.addEventListener('click', e => e.preventDefault());
+});
+</script>
+</body>
+</html>
