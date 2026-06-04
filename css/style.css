@@ -527,6 +527,20 @@ footer {
   text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none;
   transition: color 0.2s;
 }
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.footer-social-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  filter: none;
+  opacity: 1;
+  border-radius: 0;
+  background: transparent;
+}
 .footer-links a:hover { color: var(--gold); }
 .footer-copy {
   font-size: 0.78rem; color: rgba(255,255,255,0.3);
