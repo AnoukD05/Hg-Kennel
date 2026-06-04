@@ -3,19 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - HG Kennel</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<title>Contact – HG Kennel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    HG <span>Kennel</span>
-  </a>
-
+<nav id="main-nav">
+  <a class="nav-logo" href="index.html"><span class="nav-logo-paw">🐾</span>HG <span>Kennel</span></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="benches.html">Benches</a></li>
@@ -24,69 +19,38 @@
   </ul>
 </nav>
 
-<div class="sub-hero"
-     style="background:linear-gradient(160deg,#2A3B1A 0%,#4A6741 100%);">
-
-  <span class="hero-badge">
-    Neem contact op
-  </span>
-
-  <h1>
-    Vraag of <em>aanvraag?</em>
-  </h1>
-
-  <p>
-    Vul het formulier in en we contacteren u
-    zo snel mogelijk.
-  </p>
-
+<div class="sub-hero" style="background:linear-gradient(155deg,#1E2E14 0%,#3D5C38 60%,#5C7A50 100%);">
+  <span class="hero-badge">Neem contact op</span>
+  <h1>Vraag of <em>aanvraag?</em></h1>
+  <p>Vul het formulier in en we contacteren u zo snel mogelijk, meestal binnen 1 werkdag.</p>
 </div>
 
-<div class="section" style="max-width:780px;">
+<div class="section" style="max-width:820px;">
 
-  <div class="form-wrap">
-
-    <h2 class="form-title">
-      Contactformulier
-    </h2>
-
-    <p class="form-sub">
-      Heeft u een vraag of wilt u een bench of couveuse aanvragen? Vermeld gerust gewenste afmetingen, ras, diersoort of maatwerkwensen.
-    </p>
+  <div class="form-wrap reveal">
+    <h2 class="form-title">Contactformulier</h2>
+    <p class="form-sub">Heeft u een vraag of wilt u een bench of couveuse aanvragen? Vermeld gerust gewenste afmetingen, ras, diersoort of maatwerkwensen.</p>
 
     <form id="contact-form">
-
       <div class="form-grid">
-
         <div class="form-group">
           <label>Voornaam</label>
-          <input type="text"
-                 id="fname"
-                 placeholder="Jan">
+          <input type="text" id="fname" placeholder="Jan">
         </div>
-
         <div class="form-group">
           <label>Achternaam</label>
-          <input type="text"
-                 placeholder="Janssen">
+          <input type="text" placeholder="Janssen">
         </div>
-
         <div class="form-group">
           <label>E-mailadres</label>
-          <input type="email"
-                 id="email"
-                 placeholder="jan@voorbeeld.be">
+          <input type="email" id="email" placeholder="jan@voorbeeld.be">
         </div>
-
         <div class="form-group">
           <label>Telefoonnummer</label>
-          <input type="tel"
-                 placeholder="+32 4...">
+          <input type="tel" placeholder="+32 4...">
         </div>
-
         <div class="form-group full">
           <label>Onderwerp</label>
-
           <select>
             <option>— Kies een onderwerp —</option>
             <option>Bench voor thuis</option>
@@ -96,88 +60,62 @@
             <option>Andere</option>
           </select>
         </div>
-
         <div class="form-group full">
           <label>Diersoort & ras</label>
-
-          <input type="text"
-                 placeholder="Golden Retriever, 3 kittens, parkiet...">
+          <input type="text" placeholder="Golden Retriever, 3 kittens, parkiet...">
         </div>
-
         <div class="form-group full">
           <label>Uw bericht</label>
-
-          <textarea
-            placeholder="Beschrijf hier uw wensen, afmetingen, kleurvoorkeur enz."></textarea>
+          <textarea placeholder="Beschrijf hier uw wensen, afmetingen, kleurvoorkeur enz."></textarea>
         </div>
-
       </div>
 
-      <button type="button"
-              class="form-submit"
-              onclick="submitForm()">
-        Verstuur aanvraag
+      <button type="button" class="form-submit" onclick="submitForm()">
+        Verstuur aanvraag ✦
       </button>
 
-      <div class="form-success"
-           id="form-success">
-
-        Bedankt voor uw bericht!
-        We nemen zo spoedig mogelijk contact met u op.
-
+      <div class="form-success" id="form-success">
+        ✅ Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.
       </div>
-
     </form>
-
   </div>
 
-  <div style="
-      margin-top:3rem;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1.25rem;
-  ">
-
+  <div style="margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;" class="reveal">
     <div class="spec-card" style="text-align:center;">
-      <div style="font-size:1.5rem;">📍</div>
-      <strong>Locatie</strong>
-      <p>
-        België<br>
-        Afhaling op afspraak of levering mogelijk
-      </p>
+      <div style="font-size:2rem;margin-bottom:0.75rem;">📍</div>
+      <strong style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--brown-dark);">Locatie</strong>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-top:0.5rem;">Afhaling op afspraak<br>of levering mogelijk</p>
     </div>
-
     <div class="spec-card" style="text-align:center;">
-      <div style="font-size:1.5rem;">🕐</div>
-      <strong>Reactietijd</strong>
-      <p>
-        Antwoord binnen
-        1–2 werkdagen
-      </p>
+      <div style="font-size:2rem;margin-bottom:0.75rem;">⚡</div>
+      <strong style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--brown-dark);">Reactietijd</strong>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-top:0.5rem;">Antwoord binnen<br>1–2 werkdagen</p>
     </div>
-
     <div class="spec-card" style="text-align:center;">
-      <div style="font-size:1.5rem;">🐾</div>
-      <strong>Maatwerk</strong>
-      <p>
-        Elk product
-        volledig op maat
-      </p>
+      <div style="font-size:2rem;margin-bottom:0.75rem;">🐾</div>
+      <strong style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--brown-dark);">Maatwerk</strong>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-top:0.5rem;">Elk product<br>volledig op maat</p>
     </div>
-
   </div>
 
 </div>
 
 <footer>
-  <p>
-    <strong>HG Kennel</strong>
-    Handgemaakte benches &
-    couveuses · België
-  </p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">🐾 HG <span>Kennel</span></div>
+      <div class="footer-tagline">Handgemaakte benches & couveuses · België</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="benches.html">Benches</a></li>
+      <li><a href="couveuses.html">Couveuses</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <p class="footer-copy">© 2026 HG Kennel · Handgemaakt in België met 🐾</p>
 </footer>
 
 <script src="js/main.js"></script>
-
 </body>
 </html>

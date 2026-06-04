@@ -4,16 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HG Kennel – Handgemaakte Benches & Couveuses</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">HG <span>Kennel</span></a>
-
+<nav id="main-nav">
+  <a class="nav-logo" href="index.html">
+    <span class="nav-logo-paw">🐾</span>HG <span>Kennel</span>
+  </a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="benches.html">Benches</a></li>
@@ -24,125 +23,99 @@
 
 <section class="hero">
   <div class="hero-inner">
-
-    <span class="hero-badge">
-      Handgemaakt in België
-    </span>
-
+    <span class="hero-badge">Handgemaakt in België</span>
     <h1>
       Vakmanschap voor jouw
       <em>trouwste vriend</em>
     </h1>
-
     <p>
       Maatwerk benches & warmtecouveuses met liefde gemaakt voor honden, kittens, vogels en meer. Standaardmodellen op voorraad én volledig maatwerk mogelijk.
     </p>
-
     <div class="hero-btns">
-      <a href="benches.html" class="btn btn-primary">
-        Benches bekijken
-      </a>
-
-      <a href="couveuses.html" class="btn btn-outline">
-        Couveuses bekijken
-      </a>
+      <a href="benches.html" class="btn btn-primary">Benches bekijken</a>
+      <a href="couveuses.html" class="btn btn-outline">Couveuses bekijken</a>
     </div>
-
+  </div>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg>
+    Scroll
   </div>
 </section>
 
 <div class="usp-strip">
-
-  <div class="usp-item">
-    100% handgemaakt
-  </div>
-
-  <div class="usp-item">
-    Op maat gemaakt
-  </div>
-
-  <div class="usp-item">
-    Voor hond, kat & vogel
-  </div>
-
-  <div class="usp-item">
-    Veilig & duurzaam
-  </div>
-
+  <div class="usp-item"><div class="usp-icon">🔨</div>100% handgemaakt</div>
+  <div class="usp-item"><div class="usp-icon">📐</div>Op maat gemaakt</div>
+  <div class="usp-item"><div class="usp-icon">🐾</div>Voor hond, kat & vogel</div>
+  <div class="usp-item"><div class="usp-icon">🌿</div>Veilig & duurzaam</div>
 </div>
 
 <section class="section">
-
-  <span class="section-label">
-    Ons aanbod
-  </span>
-
-  <h2 class="section-title">
-    Wat maakt HG Kennel
-    zo bijzonder?
-  </h2>
-
-  <p class="section-sub">
-    Elk product wordt met zorg en aandacht gemaakt.
-  </p>
-
-  <div class="product-grid">
-
-    <div class="product-card">
-      <div class="card-body">
-        <h3>Honden Benches</h3>
-
-        <p>
-          Stevige stijlvolle benches
-          voor thuis en in de auto.
-        </p>
-
-        <a href="benches.html" class="card-link">
-          Meer info
-        </a>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="card-body">
-        <h3>Warmtecouveuses</h3>
-
-        <p>
-          Zorgzame couveuses voor
-          pasgeboren dieren.
-        </p>
-
-        <a href="couveuses.html" class="card-link">
-          Meer info
-        </a>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="card-body">
-        <h3>Contact</h3>
-
-        <p>
-          Vraag vrijblijvend een offerte aan.
-        </p>
-
-        <a href="contact.html" class="card-link">
-          Contact opnemen
-        </a>
-      </div>
-    </div>
-
+  <div class="reveal">
+    <span class="section-label">Ons aanbod</span>
+    <h2 class="section-title">Wat maakt HG Kennel<br>zo bijzonder?</h2>
+    <p class="section-sub">Elk product wordt met zorg en aandacht gemaakt van eerste schets tot afgewerkt stuk.</p>
   </div>
 
+  <div class="product-grid">
+    <div class="product-card reveal reveal-delay-1">
+      <div class="card-visual card-visual-bench">
+        <div class="card-visual-icon">🐕</div>
+        <span class="card-tag">Populair</span>
+      </div>
+      <div class="card-body">
+        <h3>Honden Benches</h3>
+        <p>Stevige, stijlvolle benches voor thuis en in de auto. Aluminium frame, Trespa of Betonplex zijpanelen.</p>
+        <a href="benches.html" class="card-link">Meer info →</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2">
+      <div class="card-visual card-visual-couveuse">
+        <div class="card-visual-icon">🌡️</div>
+        <span class="card-tag">Maatwerk</span>
+      </div>
+      <div class="card-body">
+        <h3>Warmtecouveuses</h3>
+        <p>Zorgzame couveuses voor pasgeboren dieren. Digitale thermostaat, LED-verlichting, ventilator inbegrepen.</p>
+        <a href="couveuses.html" class="card-link">Meer info →</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-3">
+      <div class="card-visual card-visual-contact">
+        <div class="card-visual-icon">✉️</div>
+      </div>
+      <div class="card-body">
+        <h3>Vrijblijvend contact</h3>
+        <p>Vraag een offerte aan of vertel ons over uw wensen. We antwoorden binnen 1–2 werkdagen.</p>
+        <a href="contact.html" class="card-link">Contact opnemen →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
+<div class="quote-strip">
+  <span class="quote-paw">🐾</span>
+  <blockquote>"Elk stuk verlaat onze werkplaats pas als het perfect is voor u én voor uw dier."</blockquote>
+  <cite>— HG Kennel, België</cite>
+</div>
+
 <footer>
-  <p>
-    <strong>HG Kennel</strong>
-    — Handgemaakte benches &
-    couveuses · België
-  </p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">🐾 HG <span>Kennel</span></div>
+      <div class="footer-tagline">Handgemaakte benches & couveuses · België</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="benches.html">Benches</a></li>
+      <li><a href="couveuses.html">Couveuses</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <p class="footer-copy">© 2026 HG Kennel · Handgemaakt in België met 🐾</p>
 </footer>
 
+<script src="js/main.js"></script>
 </body>
 </html>

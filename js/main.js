@@ -1,17 +1,31 @@
+// Nav scroll shadow
+const nav = document.getElementById('main-nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+}
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+if (revealEls.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+}
+
+// Contact form
 function submitForm() {
-    const fname = document.getElementById('fname').value.trim();
-    const email = document.getElementById('email').value.trim();
-
-    if (!fname || !email) {
-        alert('Gelieve minstens uw naam en e-mailadres in te vullen.');
-        return;
-    }
-
-    document.getElementById('form-success').classList.add('show');
-
-    const button = document.querySelector('.form-submit');
-
-    if (button) {
-        button.style.display = 'none';
-    }
+  const success = document.getElementById('form-success');
+  if (success) {
+    success.classList.add('show');
+    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
