@@ -399,6 +399,11 @@ nav.scrolled { box-shadow: var(--shadow-sm); }
   font-size: 0.73rem; font-weight: 600; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--text-muted);
 }
+.required-star {
+  color: #b5473a;
+  font-weight: 700;
+  margin-left: 0.15rem;
+}
 .form-group input, .form-group select, .form-group textarea {
   background: var(--warm-white); border: 1.5px solid var(--border);
   border-radius: 8px; padding: 0.8rem 1.1rem;
@@ -425,6 +430,17 @@ nav.scrolled { box-shadow: var(--shadow-sm); }
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(44,26,14,0.3);
 }
+.form-error {
+  display: none;
+  margin-top: 1rem;
+  color: #9b1c1c;
+  background: #fff5f5;
+  border: 1px solid #f0b4b4;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+}
+.form-error.show { display: block; }
 .form-success {
   display: none; background: #EAF3E0; border: 1px solid #7BAD5B;
   color: #2E5B1A; border-radius: 10px; padding: 1.1rem 1.5rem;

@@ -52,10 +52,87 @@ if (galleryItems.length) {
 }
 
 // Contact form
-function submitForm() {
-  const success = document.getElementById('form-success');
-  if (success) {
+const form = document.getElementById('contact-form');
+const success = document.getElementById('form-success');
+const error = document.getElementById('form-error');
+
+function showFormMessage(type, message) {
+  if (type === 'error' && error) {
+    error.textContent = message;
+    error.classList.add('show');
+    if (success) success.classList.remove('show');
+  }
+  if (type === 'success' && success) {
+    success.textContent = '✅ Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.';
     success.classList.add('show');
+    if (error) error.classList.remove('show');
     success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
+
+function validateForm() {
+  if (!form) return false;
+
+  const fieldMap = {
+    voornaam: 'Voornaam',
+    achternaam: 'Achternaam',
+    email: 'E-mailadres',
+    telefoon: 'Telefoonnummer',
+    onderwerp: 'Onderwerp',
+    bericht: 'Uw bericht',
+  };
+
+  const requiredFields = form.querySelectorAll('[required]');
+  for (const field of requiredFields) {
+    const value = field.type === 'select-one' ? field.value : field.value.trim();
+    if (!value) {
+      showFormMessage('error', `Vul eerst het veld “${fieldMap[field.name] || field.name}” in.`);
+      field.focus();
+      return false;
+    }
+  }
+
+  const emailField = form.querySelector('input[name="email"]');
+  if (emailField && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+    showFormMessage('error', 'Vul een geldig e-mailadres in.');
+    emailField.focus();
+    return false;
+  }
+
+  return true;
+}
+
+if (form) {
+  if (localStorage.getItem('hgKennelFormSent') === 'true') {
+    showFormMessage('success');
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!validateForm()) {
+      showFormMessage('error', 'Vul alle verplichte velden in, inclusief onderwerp en een geldig e-mailadres.');
+      return;
+    }
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        throw new Error(result.message || 'Het verzenden is mislukt.');
+      }
+
+      localStorage.setItem('hgKennelFormSent', 'true');
+      showFormMessage('success');
+      form.reset();
+    } catch (submitError) {
+      showFormMessage('error', submitError.message || 'Er ging iets mis bij het verzenden.');
+    }
+  });
+}
+
